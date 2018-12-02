@@ -1,0 +1,123 @@
+<div class="container-fluid">
+    <div class="row headers">
+        <div class="col-lg-8">
+            <h1 class="topicHeader">BFS</h1>
+            <br>
+            <h4 class="topicSubHeader">Breadth First Search</h4><br>
+            <p class="topicContent">
+                The time complexity of a BFS algorithm depends directly on how much time it
+                takes to visit a node. Since the time it takes to read a node’s value and
+                enqueue its children doesn’t change based on the node, we can say that visiting
+                a node takes constant time, or, <b>O(1)</b> time. Since we only visit each node in a
+                BFS tree traversal exactly once, the time it will take us to read every node
+                really just depends on how many nodes there are in the tree! If our tree has
+                15 nodes, it will take us <b>O(15)</b>; but if our tree has 1500 nodes, it will take
+                us <b>O(1500)</b>. Thus, the time complexity of a breadth-first search algorithm takes
+                linear time, or <b>O(n)</b>, where n is the number of nodes in the tree.
+                <br>
+                Space complexity is similar to this, has more to do with how much our queue grows
+                and shrinks as we add the nodes that we need to check to it. In the worst case
+                situation, we could potentially be enqueuing all the nodes in a tree if they are
+                all children of one another, which means that we could possibly be using as much
+                memory as there are nodes in the tree. If the size of the queue can grow to be
+                the number of nodes in the tree, the space complexity for a BFS algorithm is also
+                linear time, or <b>O(n)</b>, where n is the number of nodes in the tree.
+            </p>
+        </div>
+        <div class="col-lg-4 text-center">
+            <br><br>
+            <mat-card>
+                <mat-card-content>
+                    <img class="bfsdfsImg" src="../../assets/bfs.jpeg" alt="BFS image">
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+
+    <div class="row graphRow">
+
+        <!-- The Column for the tree-->
+        <div class="col-lg-8">
+            <mat-card class="treeCol">
+                <mat-card-header>
+                    <h1 class="playGHeader">
+                        <span class="cardHead">Playground</span><br>
+                        <span class="cardSubHead">View the traversal of the tree according to your convenience.</span>
+                        <br><br>
+                        {{ traversalMessage }}
+                    </h1>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <!-- The DIV for the Diagram-->
+                    <button mat-raised-button color="primary" (click)="onPrev()"><i class="material-icons">skip_previous</i>&nbsp;Prev</button>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button color="primary" (click)="onNext()">Next&nbsp;<i class="material-icons">skip_next</i></button>
+                    &nbsp;&nbsp;
+                    <button mat-raised-button  color="warn" (click)="onReset()">Reset&nbsp;<i class="material-icons">replay</i></button>
+                    <br><br>
+                    <div id="myDiagramDiv" class="diagramSize"></div>
+                </mat-card-content>
+            </mat-card>
+            <br><br>
+        </div>
+
+        <!-- The Column for vertex addition-->
+        <div class="col-lg-4 treeCol">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <mat-card class="travCol">
+                        <mat-card-header>
+                            <h1 class="playGHeader">
+                                <span class="cardHead">Tree traversal order</span><br>
+                            </h1>
+                        </mat-card-header>
+                        <mat-card-content>
+                            <br>
+                            <p *ngFor="let node of nodes" class="treeTraversal">{{ node }}</p>
+                        </mat-card-content>
+                    </mat-card>
+                    <br><br>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <mat-card class="treeCol">
+                        <mat-card-header>
+                            <h1 class="playGHeader">
+                                <span class="cardHead">Add a vertex</span><br>
+                                <span class="cardSubHead">Select a parent and add vertex to the tree.</span><br>
+                            </h1>
+                        </mat-card-header>
+                        <mat-card-content class="selCard">
+
+                            <!--Form to add a vertex-->
+                            <form novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+                                <p>
+                                    <mat-form-field>
+                                        <mat-select formControlName="parent" placeholder="Select Parent">
+                                            <mat-option *ngFor="let parent of parents" [value]="parent">
+                                                {{ parent }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </p>
+                                <p>
+                                    <br><br>
+                                    <button type="submit" mat-raised-button color="primary" style="padding:8px;">
+                                        <i class="material-icons">add_circle_outline</i>&nbsp;Add vertex
+                                    </button>
+                                </p>
+                            </form>
+
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,1 +1,108 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+$font-stack: 'Roboto', sans-serif;
+$thin-weight: 100;
+$light-weight: 300;
+$regular-weight: 400;
+$bold-weight: 700;
+
+body {
+    font-family: $font-stack;
+}
+
+.toolbar {
+    width:100%;
+    z-index: 1000;
+    position: fixed;
+    font-family: $font-stack;
+    font-weight: $light-weight;
+}
+
+.headers {
+    margin-top: 15vh;
+    margin-bottom: 10vh;
+    padding: 0vh 5vh 5vh 5vh;
+}
+
+.topicHeader {
+    font-size: 10vh;
+    font-weight: $light-weight;
+    font-family: $font-stack;
+}
+
+.topicSubHeader {
+    font-size: 5vh;
+    font-weight: $thin-weight;
+    font-family: $font-stack;
+}
+
+.topicContent {
+    font-size: 2vh;
+    font-weight: $regular-weight;
+    font-family: $font-stack;
+}
+
+@media only screen and (min-width: 850px) {
+    .bfsdfsImg {
+        height: 50%;
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 849px) {
+    .bfsdfsImg {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+.travCol {
+    min-height: 35vh;
+    color: white;
+    background-color: #783ED6;
+}
+
+.treeTraversal {
+    color: #000;
+    background-color: #fff;
+    padding:20px;
+    margin: 5px;
+    display:inline-block;
+    border : 1px solid black;
+}
+
+.graphRow {
+    height: 85vh;
+}
+
+.treeCol {
+    min-height: 40vh;
+}
+
+.selCard {
+    color: white;
+    padding: 2.5vh;
+}
+
+.cardHead {
+    font-weight: $thin-weight;
+}
+
+.cardSubHead {
+    font-size: 2.5vh;
+    font-weight: $regular-weight;
+}
+
+.playGHeader {
+    padding-bottom: 2vh;
+    font-weight: $thin-weight;
+    font-family: $font-stack;
+}
+
+.diagramSize {
+    width: 100%;
+    min-height: 50vh;
+    border-radius: 1%;
+    border: 1px dashed blue;
+}
