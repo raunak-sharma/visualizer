@@ -64,12 +64,14 @@ body {
 }
 
 .treeTraversal {
+    -webkit-box-shadow: 3px 3px 16px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 3px 3px 16px 0px rgba(0,0,0,0.75);
+    box-shadow: 3px 3px 16px 0px rgba(0,0,0,0.75);
     color: #000;
     background-color: #fff;
     padding:20px;
     margin: 5px;
     display:inline-block;
-    border : 1px solid black;
 }
 
 .graphRow {

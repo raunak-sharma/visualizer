@@ -52,7 +52,7 @@
                     <!-- The DIV for the Diagram-->
                     <button mat-raised-button color="primary" (click)="onPrev()"><i class="material-icons">skip_previous</i>&nbsp;Prev</button>
                     &nbsp;&nbsp;
-                    <button mat-raised-button color="primary" (click)="onNext()">Next&nbsp;<i class="material-icons">skip_next</i></button>
+                    <button mat-raised-button color="primary" (click)="onNext();">Next&nbsp;<i class="material-icons">skip_next</i></button>
                     &nbsp;&nbsp;
                     <button mat-raised-button  color="warn" (click)="onReset()">Reset&nbsp;<i class="material-icons">replay</i></button>
                     <br><br>
@@ -78,7 +78,7 @@
                             <p *ngFor="let node of nodes" class="treeTraversal">{{ node }}</p>
                         </mat-card-content>
                     </mat-card>
-                    <br><br>
+                    <br>
                 </div>
             </div>
 
@@ -108,7 +108,9 @@
                                     <br><br>
                                     <button type="submit" mat-raised-button color="primary" style="padding:8px;">
                                         <i class="material-icons">add_circle_outline</i>&nbsp;Add vertex
-                                    </button>
+                                    </button> &nbsp; &nbsp;
+                                    <button mat-raised-button style="padding:8px;" color="warn" (click)="onReset()">Reset&nbsp;<i class="material-icons">replay</i></button>
+
                                 </p>
                             </form>
 
