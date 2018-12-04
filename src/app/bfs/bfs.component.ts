@@ -69,14 +69,11 @@ export class BfsComponent implements OnInit {
     var queue = [];
     // visited array
     var visited = new Array;
-    console.log("graph here", this.graph);
 
     // initializing the visited array to 0
     for(var i = 0; i < this.arrLabels.length; i++) {
       visited[i] = 0;
     }
-
-    console.log('visi len = ', visited.length);
 
     queue.push(0);
     this.traversal.push(0);
@@ -85,7 +82,6 @@ export class BfsComponent implements OnInit {
       //pop the visited vertex out of the queue
       let ver = queue.shift();
       for(var i = 0; i < this.graph[ver].length; i++)  {
-        console.log("cheking on ", ver);
         if( visited[this.graph[ver][i]] == 0 )  {
           queue.push(this.graph[ver][i]);
           visited[this.graph[ver][i]] = 1;
@@ -137,28 +133,29 @@ export class BfsComponent implements OnInit {
 
   nodes = [0];
   //function to show next traversal
-  lastV = -1;
+  lastV = 0;
 
+
+  // fuction for next button
   onNext() {
 
+    // incrementing the last visited
     this.lastV++;
-    console.log('lastv = ', this.lastV);
+
     // when traversal is not completed
     if(this.lastV < this.traversal.length) {
 
+      // push node in traversal order array
       this.nodes.push( this.traversal[this.lastV] );
 
-      //console.log('On next', this.arrLabels);
-      console.log('lastvv = ', this.lastV);
-      console.log('changing = ', this.traversal[this.lastV].toString());
-
       // fill the visited vertex with red
-      this.arrLabels[this.traversal[this.lastV].toString()]["color"] = "red";
+      (this.lastV == 1) ? this.arrLabels["0"]["color"] = "red"
+      : this.arrLabels[this.traversal[this.lastV].toString()]["color"] = "red";
 
       // updating the diagram
       this.diagram.model = new go.GraphLinksModel( this.arrLabels, this.arrConections );
 
-      //traversal message
+      // traversal message
       this.traversalMessage = "Node " + (this.traversal[this.lastV]) + " is visited after node " + (this.traversal[this.lastV - 1]);
 
     }
@@ -170,6 +167,7 @@ export class BfsComponent implements OnInit {
 
   }
 
+  // fuction for previous button
   onPrev() {
     console.log("Previous clicked");
   }
@@ -193,8 +191,6 @@ export class BfsComponent implements OnInit {
     this.traversal.splice(0, this.traversal.length);
     this.bfs();
     this.diagram.model = new go.GraphLinksModel( this.arrLabels, this.arrConections );
-    console.log(this.arrConections);
-    console.log(this.graph);
   }
 
 }
