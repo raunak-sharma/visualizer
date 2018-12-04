@@ -17,12 +17,16 @@ import 'hammerjs';
 import { AppComponent } from './app.component';
 import { BfsComponent } from './bfs/bfs.component';
 import { DfsComponent } from './dfs/dfs.component';
+//Importing the router
+import { AppRoutingModule } from './app-routing/app-routing.module';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BfsComponent,
-    DfsComponent
+    DfsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -33,7 +37,8 @@ import { DfsComponent } from './dfs/dfs.component';
     MatButtonModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

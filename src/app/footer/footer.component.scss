@@ -1,0 +1,33 @@
+$thin-weight: 100;
+$light-weight: 300;
+$regular-weight: 400;
+$bold-weight: 700;
+$font-stack: 'Roboto', sans-serif;
+
+.footerPad {
+    padding: 10vh;
+    background-color: #4568DC;
+    -webkit-transition: background-color 2s ease-out;
+    -moz-transition: background-color 2s ease-out;
+    -o-transition: background-color 2s ease-out;
+    transition: background-color 2s ease-out;
+}
+
+.footerPad:hover {
+    background-color: darkmagenta;
+}
+
+.icon {
+    font-size: 8vh;
+}
+
+.iconText {
+    font-size: 2.5vh;
+    font-family: $font-stack;
+    font-weight: $thin-weight;
+}
+
+.linkDeco {
+    color: white;
+    text-decoration: none;
+}

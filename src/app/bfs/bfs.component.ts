@@ -29,8 +29,8 @@ export class BfsComponent implements OnInit {
     { key: "2", color: "skyblue" },
     { key: "3", color: "skyblue" },
     { key: "4", color: "skyblue" },
-    { key: "6", color: "skyblue" },
-    { key: "5", color: "skyblue" }
+    { key: "5", color: "skyblue" },
+    { key: "6", color: "skyblue" }
   ];
 
   arrLabelsDup = [];
@@ -59,9 +59,12 @@ export class BfsComponent implements OnInit {
   // the tree traversal data
   traversal = [];
   traversalMessage = "Node with label 0 is the Root";
-  lastVisited = 0;
   parents = [];
   selectedParent;
+  nodes = [0];
+  lastV = 0;
+  // Declaring the diagram at one scope above ngOnInit so that vertex updation can be performed
+  diagram : any;
 
   // Breadth first search traversal function
   bfs () {
@@ -75,25 +78,30 @@ export class BfsComponent implements OnInit {
       visited[i] = 0;
     }
 
+    // push 0 into the queue as 0 is always visited first
     queue.push(0);
+
+    // reinitialize traversal array and then push 0 into it
+    this.traversal = [];
     this.traversal.push(0);
 
     while(queue.length > 0) {
       //pop the visited vertex out of the queue
       let ver = queue.shift();
       for(var i = 0; i < this.graph[ver].length; i++)  {
+        // if the vertex is not visited
         if( visited[this.graph[ver][i]] == 0 )  {
+          // push it into the queue
           queue.push(this.graph[ver][i]);
+          // set visited to 1 for the vertex
           visited[this.graph[ver][i]] = 1;
+          // push the vertex in traversal arrary
           this.traversal.push(this.graph[ver][i]);
         }
       }
     }
     console.log("The traversal order : " + this.traversal);
   }
-
-  // Declaring the diagram at one scope above ngOnInit so that vertex updation can be performed
-  diagram : any;
 
   ngOnInit() {
 
@@ -130,11 +138,6 @@ export class BfsComponent implements OnInit {
     this.diagram.undoManager.isEnabled = true;
 
   }
-
-  nodes = [0];
-  //function to show next traversal
-  lastV = 0;
-
 
   // fuction for next button
   onNext() {
@@ -179,17 +182,24 @@ export class BfsComponent implements OnInit {
 
   // function to add a new vertex in the graph
   onSubmit() {
+    // Obtain the selected parent from the form
     this.feedback = this.feedbackForm.value;
+    this.feedbackForm.reset();
     this.selectedParent = this.feedback.parent;
     console.log("parent you selected : ", this.selectedParent.toString());
-    this.feedbackForm.reset();
+
+    // push new vertex into the graph diagram
     this.arrLabels.push( { key: (this.graph.length).toString(), color: "skyblue" } );
     this.arrConections.push( { from: this.selectedParent.toString(), to: (this.graph.length).toString()} );
+
+    // push new vertex into the graph vector of vectors
     this.graph.push([]);
     this.graph[this.selectedParent].push(this.graph.length-1);
-    this.lastVisited = 0;
-    this.traversal.splice(0, this.traversal.length);
+
+    // Calling the BFS function for new graph
     this.bfs();
+
+    // Reloading the graph
     this.diagram.model = new go.GraphLinksModel( this.arrLabels, this.arrConections );
   }
 
