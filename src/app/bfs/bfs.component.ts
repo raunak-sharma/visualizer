@@ -165,7 +165,7 @@ export class BfsComponent implements OnInit {
 
     // when the tree traversal is completed
     else {
-      this.traversalMessage = "Tree travesal completed. Please Reset";
+      this.traversalMessage = "Tree travesal completed. Please Reset !";
     }
 
   }

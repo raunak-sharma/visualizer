@@ -1,5 +1,14 @@
 <div class="continer-fluid">
-  <mat-toolbar class="toolbar" color="primary"> <span>Visualizer</span> </mat-toolbar>
+  <mat-toolbar class="toolbar" color="primary">
+    <span>Visualizer</span>
+    <span style="flex: 1 1 auto;"></span>
+    <span class="toLeft">
+        <button mat-raised-button color="accent" routerLink="/bfs">BFS</button>
+        &nbsp;&nbsp;
+        <button mat-raised-button color="accent" routerLink="/dfs">DFS</button>
+        &nbsp;
+    </span>
+  </mat-toolbar>
   <router-outlet> </router-outlet>
   <app-footer></app-footer>
 </div>
