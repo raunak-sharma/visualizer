@@ -37,8 +37,8 @@
     <div class="row graphRow">
 
         <!-- The Column for the tree-->
-        <div class="col-lg-8">
-            <mat-card class="treeCol">
+        <div class="col-lg-8 treeCol">
+            <mat-card>
                 <mat-card-header>
                     <h1 class="playGHeader">
                         <span class="cardHead">Playground</span><br>
@@ -46,22 +46,21 @@
                         <br><br>
                         <form class="selectTraversal" novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
                             <p>
-                                <mat-form-field>
-                                    <mat-select formControlName="parent" placeholder="Select Traversal Order">
-                                        <mat-option *ngFor="let parent of parents" [value]="parent">
-                                            {{ parent }}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                                &nbsp;
-                                <button type="submit" mat-raised-button color="primary" style="padding:8px;">
-                                    Select Traversal
-                                </button> &nbsp; &nbsp;
+                            <mat-form-field>
+                                <mat-select formControlName="parent" placeholder="Select Traversal Order">
+                                    <mat-option *ngFor="let parent of parents" [value]="parent">
+                                        {{ parent }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            &nbsp;
+                            <button type="submit" mat-raised-button color="primary" style="padding:8px;">
+                                Select Traversal
+                            </button> &nbsp; &nbsp;
                             </p>
                         </form>
                     </h1>
                 </mat-card-header>
-
                 <mat-card-content>
                     <!-- The DIV for the Diagram-->
                     <button mat-raised-button color="primary" (click)="onPrev()"><i class="material-icons">skip_previous</i>&nbsp;Prev</button>

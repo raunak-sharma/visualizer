@@ -6,15 +6,7 @@ $font-stack: 'Roboto', sans-serif;
 
 .footerPad {
     padding: 10vh;
-    background-color: #4568DC;
-    -webkit-transition: background-color 2s ease-out;
-    -moz-transition: background-color 2s ease-out;
-    -o-transition: background-color 2s ease-out;
-    transition: background-color 2s ease-out;
-}
-
-.footerPad:hover {
-    background-color: red;
+    background-image: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
 }
 
 .icon {
