@@ -11,6 +11,7 @@ import { Feedback } from '../shared/feedback';
 })
 export class DfsComponent implements OnInit {
 
+  // form for selecting the traversal option
   feedbackForm : FormGroup;
   feedback: Feedback;
 
@@ -18,10 +19,12 @@ export class DfsComponent implements OnInit {
     this.createForm();
   }
 
+  // initializing the form
   createForm() {
     this.feedbackForm = this.fb.group({parent : ''});
   }
 
+  // a copy of the initial diagram
   arrTemp = [
     { key: "1", color: "skyblue" },
     { key: "0", color: "orange" },
@@ -42,8 +45,6 @@ export class DfsComponent implements OnInit {
     { key: "5", color: "skyblue" },
     { key: "6", color: "skyblue" }
   ];
-
-  arrLabelsDup = [];
 
   // an array of JavaScript objects, one per connection
   arrConections = [
@@ -77,12 +78,13 @@ export class DfsComponent implements OnInit {
 
   nextB = true;
 
+  // all the order traversal data
   inV = false;
   postV = false;
   preV = false;
   preorder = ["0", "1", "3", "4", "6", "5", "2"];
   inorder = ["3", "1", "6", "4", "5", "0", "2"];
-  postorder = ["2", "1", "3", "4", "0", "5", "6"];
+  postorder = ["3", "6", "5", "4", "1", "2", "0"];
   parents = ["In-Order", "Pre-Order", "Post-Order"];
   traversalMessage = "Node with label 0 is the Root";
 
@@ -110,6 +112,7 @@ export class DfsComponent implements OnInit {
       this.traversal = this.postorder;
     }
 
+    // making the pointer to 0th position and empyting the traversal list
     this.lastV = 0;
     this.nodes = [];
     console.log("The traversal order : " + this.traversal);

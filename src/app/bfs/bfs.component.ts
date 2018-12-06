@@ -18,6 +18,7 @@ export class BfsComponent implements OnInit {
     this.createForm();
   }
 
+  // initializing the form for vertex addition
   createForm() {
     this.feedbackForm = this.fb.group({parent : ''});
   }
