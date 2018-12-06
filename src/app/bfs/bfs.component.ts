@@ -63,6 +63,8 @@ export class BfsComponent implements OnInit {
   selectedParent;
   nodes = [0];
   lastV = 0;
+  nextB = true;
+
   // Declaring the diagram at one scope above ngOnInit so that vertex updation can be performed
   diagram : any;
 
@@ -165,14 +167,10 @@ export class BfsComponent implements OnInit {
 
     // when the tree traversal is completed
     else {
+      this.nextB = false;
       this.traversalMessage = "Tree travesal completed. Please Reset !";
     }
 
-  }
-
-  // fuction for previous button
-  onPrev() {
-    console.log("Previous clicked");
   }
 
   // reload the window
@@ -191,6 +189,7 @@ export class BfsComponent implements OnInit {
     // push new vertex into the graph diagram
     this.arrLabels.push( { key: (this.graph.length).toString(), color: "skyblue" } );
     this.arrConections.push( { from: this.selectedParent.toString(), to: (this.graph.length).toString()} );
+    this.parents.push(this.graph.length);
 
     // push new vertex into the graph vector of vectors
     this.graph.push([]);

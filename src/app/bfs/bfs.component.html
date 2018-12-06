@@ -50,9 +50,8 @@
 
                 <mat-card-content>
                     <!-- The DIV for the Diagram-->
-                    <button mat-raised-button color="primary" (click)="onPrev()"><i class="material-icons">skip_previous</i>&nbsp;Prev</button>
                     &nbsp;&nbsp;
-                    <button mat-raised-button color="primary" (click)="onNext();">Next&nbsp;<i class="material-icons">skip_next</i></button>
+                    <button mat-raised-button color="primary" *ngIf="nextB" (click)="onNext();">Next&nbsp;<i class="material-icons">skip_next</i></button>
                     &nbsp;&nbsp;
                     <button mat-raised-button  color="warn" (click)="onReset()">Reset&nbsp;<i class="material-icons">replay</i></button>
                     <br><br>

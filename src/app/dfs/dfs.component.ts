@@ -22,10 +22,20 @@ export class DfsComponent implements OnInit {
     this.feedbackForm = this.fb.group({parent : ''});
   }
 
+  arrTemp = [
+    { key: "1", color: "skyblue" },
+    { key: "0", color: "orange" },
+    { key: "2", color: "skyblue" },
+    { key: "3", color: "skyblue" },
+    { key: "4", color: "skyblue" },
+    { key: "5", color: "skyblue" },
+    { key: "6", color: "skyblue" }
+  ];
+
   // an array of JavaScript objects, one per node declaration
   arrLabels = [
     { key: "1", color: "skyblue" },
-    { key: "0", color: "red" },
+    { key: "0", color: "orange" },
     { key: "2", color: "skyblue" },
     { key: "3", color: "skyblue" },
     { key: "4", color: "skyblue" },
@@ -56,25 +66,28 @@ export class DfsComponent implements OnInit {
     []
   ];
 
-  // the tree traversal data
-  traversal = [];
-  traversalMessage = "Node with label 0 is the Root";
-  parents = ["In-Order", "Pre-Order", "Post-Order"];
-  selectedParent;
-  nodes = [0];
-  lastV = 0;
   // Declaring the diagram at one scope above ngOnInit so that vertex updation can be performed
   diagram : any;
 
+  // the tree traversal data
+  traversal = [];
+  selectedParent;
+  nodes = [];
+  lastV = 0;
+
+  nextB = true;
+
   inV = false;
-  preV = false;
   postV = false;
-  inorder = ["0", "2", "3", "4", "1", "5"]
-  preorder = ["1", "2", "3", "4", "0", "5"]
-  postorder = ["2", "1", "3", "4", "0", "5"]
+  preV = false;
+  preorder = ["0", "1", "3", "4", "6", "5", "2"];
+  inorder = ["3", "1", "6", "4", "5", "0", "2"];
+  postorder = ["2", "1", "3", "4", "0", "5", "6"];
+  parents = ["In-Order", "Pre-Order", "Post-Order"];
+  traversalMessage = "Node with label 0 is the Root";
 
   // Determining the order of traversal
-  bfs (inV, preV, postV) {
+  dfs (inV, preV, postV) {
 
     if(inV == true) {
       this.inV = true;
@@ -97,13 +110,15 @@ export class DfsComponent implements OnInit {
       this.traversal = this.postorder;
     }
 
+    this.lastV = 0;
+    this.nodes = [];
     console.log("The traversal order : " + this.traversal);
   }
 
   ngOnInit() {
 
-    // calling the bfs function to store the traversal order
-    this.bfs(true, false, false);
+    // calling the dfs function to store the traversal order
+    this.dfs(true, false, false);
 
     // targetting the div with myDiagramDiv id
     this.diagram = new go.Diagram("myDiagramDiv");
@@ -135,9 +150,6 @@ export class DfsComponent implements OnInit {
   // fuction for next button
   onNext() {
 
-    // incrementing the last visited
-    this.lastV++;
-
     // when traversal is not completed
     if(this.lastV < this.traversal.length) {
 
@@ -145,27 +157,30 @@ export class DfsComponent implements OnInit {
       this.nodes.push( this.traversal[this.lastV] );
 
       // fill the visited vertex with red
-      (this.lastV == 1) ? this.arrLabels["0"]["color"] = "red"
-      : this.arrLabels[this.traversal[this.lastV].toString()]["color"] = "red";
+      for( var i = 0; i < this.arrLabels.length; i++ ) {
+        if(this.arrLabels[i]["key"] == this.traversal[this.lastV]) {
+          this.arrLabels[i]["color"] = "red";
+        }
+      }
 
       // updating the diagram
       this.diagram.model = new go.GraphLinksModel( this.arrLabels, this.arrConections );
 
       // traversal message
-      this.traversalMessage = "Node " + (this.traversal[this.lastV]) + " is visited after node " + (this.traversal[this.lastV - 1]);
+      (this.lastV == 0) ? this.traversalMessage = "Node " + (this.traversal[this.lastV]) + " is visited first."
+      : this.traversalMessage = "Node " + (this.traversal[this.lastV]) + " is visited after node " + (this.traversal[this.lastV - 1]);
+
+      // incrementing the last visited
+      this.lastV++;
 
     }
 
     // when the tree traversal is completed
     else {
+      this.nextB = false;
       this.traversalMessage = "Tree travesal completed. Please Reset !";
     }
 
-  }
-
-  // fuction for previous button
-  onPrev() {
-    console.log("Previous clicked");
   }
 
   // reload the window
@@ -181,19 +196,21 @@ export class DfsComponent implements OnInit {
     this.selectedParent = this.feedback.parent;
     console.log("parent you selected : ", this.selectedParent.toString());
 
-    // Calling the BFS function for new graph
+    // Calling the DFS function for new graph
     if(this.selectedParent == "In-Order") {
-      this.bfs(true, false, false);
+      this.dfs(true, false, false);
     }
     else if(this.selectedParent == "Pre-Order") {
-      this.bfs(false, true, false);
+      this.dfs(false, true, false);
     }
     else if(this.selectedParent == "Post-Order") {
-      this.bfs(false, false, true);
+      this.dfs(false, false, true);
     }
 
-    // Reloading the graph
+    this.arrLabels = this.arrTemp;
+    // updating the diagram
     this.diagram.model = new go.GraphLinksModel( this.arrLabels, this.arrConections );
+
   }
 
 }

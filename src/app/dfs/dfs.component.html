@@ -44,6 +44,9 @@
                         <span class="cardHead">Playground</span><br>
                         <span class="cardSubHead">View the traversal of the tree according to your convenience.</span>
                         <br><br>
+                        <h1 *ngIf="inV" class="cardHead">In Order Selected</h1>
+                        <h1 *ngIf="postV" class="cardHead">Post Order Selected</h1>
+                        <h1 *ngIf="preV" class="cardHead">Pre Order Selected</h1>
                         <form class="selectTraversal" novalidate [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
                             <p>
                             <mat-form-field>
@@ -63,11 +66,10 @@
                 </mat-card-header>
                 <mat-card-content>
                     <!-- The DIV for the Diagram-->
-                    <button mat-raised-button color="primary" (click)="onPrev()"><i class="material-icons">skip_previous</i>&nbsp;Prev</button>
                     &nbsp;&nbsp;
-                    <button mat-raised-button color="primary" (click)="onNext();">Next&nbsp;<i class="material-icons">skip_next</i></button>
+                    <button mat-raised-button *ngIf="nextB" color="primary" (click)="onNext();">Next&nbsp;<i class="material-icons">skip_next</i></button>
                     &nbsp;&nbsp;
-                    <button mat-raised-button  color="warn" (click)="onReset()">Reset&nbsp;<i class="material-icons">replay</i></button>
+                    <button mat-raised-button color="warn" (click)="onReset()">Reset&nbsp;<i class="material-icons">replay</i></button>
                     <br><br>
                     <div id="myDiagramDiv" class="diagramSize"></div>
                 </mat-card-content>
@@ -91,13 +93,13 @@
                             <p *ngFor="let node of nodes" class="treeTraversal">{{ node }}</p>
                         </mat-card-content>
                     </mat-card>
-                    <br>
+                    <br><br>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <mat-card class="treeCol">
+                    <mat-card class="treeCol" style="min-height:25vh;">
                         <mat-card-header>
                             <h1 class="playGHeader">
                                 <span class="cardHead">Traversal Details</span><br>
@@ -105,7 +107,7 @@
                         </mat-card-header>
                         <mat-card-content>
 
-                            <h1 class="topicSubHeader" style="font-size: 4vh;">
+                            <h1 class="topicSubHeader" style="font-size: 4vh; padding: 5vh;">
                                 <!--Tree Traversal messages-->
                                 {{ traversalMessage }}
                             </h1>
