@@ -206,7 +206,7 @@ export class DfsComponent implements OnInit {
     }
 
     this.nextB = true;
-
+    this.lastV = 0;
     // updating the diagram
     this.diagram.model = new go.GraphLinksModel( this.arrLabels, this.arrConections );
   }
