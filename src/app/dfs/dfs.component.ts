@@ -24,17 +24,6 @@ export class DfsComponent implements OnInit {
     this.feedbackForm = this.fb.group({parent : ''});
   }
 
-  // a copy of the initial diagram
-  arrTemp = [
-    { key: "1", color: "skyblue" },
-    { key: "0", color: "orange" },
-    { key: "2", color: "skyblue" },
-    { key: "3", color: "skyblue" },
-    { key: "4", color: "skyblue" },
-    { key: "5", color: "skyblue" },
-    { key: "6", color: "skyblue" }
-  ];
-
   // an array of JavaScript objects, one per node declaration
   arrLabels = [
     { key: "1", color: "skyblue" },
@@ -197,7 +186,7 @@ export class DfsComponent implements OnInit {
     this.feedback = this.feedbackForm.value;
     this.feedbackForm.reset();
     this.selectedParent = this.feedback.parent;
-    console.log("parent you selected : ", this.selectedParent.toString());
+    console.log("order you selected : ", this.selectedParent.toString());
 
     // Calling the DFS function for new graph
     if(this.selectedParent == "In-Order") {
@@ -210,10 +199,13 @@ export class DfsComponent implements OnInit {
       this.dfs(false, false, true);
     }
 
-    this.arrLabels = this.arrTemp;
+    for( var i = 0; i < this.arrLabels.length; i++ ) {
+      i == 1 ? this.arrLabels[i]["color"] = "orange"
+      : this.arrLabels[i]["color"] = "skyblue";
+    }
+
     // updating the diagram
     this.diagram.model = new go.GraphLinksModel( this.arrLabels, this.arrConections );
-
   }
 
 }
