@@ -199,10 +199,13 @@ export class DfsComponent implements OnInit {
       this.dfs(false, false, true);
     }
 
+    // reinitializing the graph
     for( var i = 0; i < this.arrLabels.length; i++ ) {
       i == 1 ? this.arrLabels[i]["color"] = "orange"
       : this.arrLabels[i]["color"] = "skyblue";
     }
+
+    this.nextB = true;
 
     // updating the diagram
     this.diagram.model = new go.GraphLinksModel( this.arrLabels, this.arrConections );
