@@ -3,6 +3,9 @@ import * as go from "gojs"; //importing Go.js
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback } from '../shared/feedback';
+import { Graph } from '../shared/graph';
+import { ArrLabelsDFS } from '../shared/graphLabels';
+import { ArrConections } from '../shared/graphConnections';
 
 @Component({
   selector: 'app-dfs',
@@ -25,36 +28,13 @@ export class DfsComponent implements OnInit {
   }
 
   // an array of JavaScript objects, one per node declaration
-  arrLabels = [
-    { key: "1", color: "skyblue" },
-    { key: "0", color: "orange" },
-    { key: "2", color: "skyblue" },
-    { key: "3", color: "skyblue" },
-    { key: "4", color: "skyblue" },
-    { key: "5", color: "skyblue" },
-    { key: "6", color: "skyblue" }
-  ];
+  arrLabels = ArrLabelsDFS;
 
   // an array of JavaScript objects, one per connection
-  arrConections = [
-    { from: "0", to: "2" },
-    { from: "0", to: "1" },
-    { from: "1", to: "4" },
-    { from: "1", to: "3" },
-    { from: "4", to: "6" },
-    { from: "4", to: "5" },
-  ];
+  arrConections = ArrConections;
 
   // a vector of vector of the initial graph
-  graph = [
-    [1, 2],
-    [3, 4],
-    [],
-    [],
-    [5, 6],
-    [],
-    []
-  ];
+  graph = Graph;
 
   // Declaring the diagram at one scope above ngOnInit so that vertex updation can be performed
   diagram : any;
@@ -62,15 +42,19 @@ export class DfsComponent implements OnInit {
   // the tree traversal data
   traversal = [];
   selectedParent;
-  nodes = [];
-  lastV = 0;
 
+  // traversal order array
+  nodes = [];
+
+  // last visited position variable
+  lastV = 0;
   nextB = true;
 
   // all the order traversal data
   inV = false;
   postV = false;
   preV = false;
+  // pre calculated traversal data fora a satic tree
   preorder = ["0", "1", "3", "4", "6", "5", "2"];
   inorder = ["3", "1", "6", "4", "5", "0", "2"];
   postorder = ["3", "6", "5", "4", "1", "2", "0"];

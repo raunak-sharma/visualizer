@@ -3,6 +3,9 @@ import * as go from "gojs"; //importing Go.js
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback } from '../shared/feedback';
+import { Graph } from '../shared/graph';
+import { ArrLabelsBFS } from '../shared/graphLabels';
+import { ArrConections } from '../shared/graphConnections';
 
 @Component({
   selector: 'app-bfs',
@@ -24,38 +27,13 @@ export class BfsComponent implements OnInit {
   }
 
   // an array of JavaScript objects, one per node declaration
-  arrLabels = [
-    { key: "1", color: "skyblue" },
-    { key: "0", color: "red" },
-    { key: "2", color: "skyblue" },
-    { key: "3", color: "skyblue" },
-    { key: "4", color: "skyblue" },
-    { key: "5", color: "skyblue" },
-    { key: "6", color: "skyblue" }
-  ];
-
-  arrLabelsDup = [];
+  arrLabels = ArrLabelsBFS;
 
   // an array of JavaScript objects, one per connection
-  arrConections = [
-    { from: "0", to: "2" },
-    { from: "0", to: "1" },
-    { from: "1", to: "4" },
-    { from: "1", to: "3" },
-    { from: "4", to: "6" },
-    { from: "4", to: "5" },
-  ];
+  arrConections = ArrConections;
 
   // a vector of vector of the initial graph
-  graph = [
-    [1, 2],
-    [3, 4],
-    [],
-    [],
-    [5, 6],
-    [],
-    []
-  ];
+  graph = Graph;
 
   // the tree traversal data
   traversal = [];
